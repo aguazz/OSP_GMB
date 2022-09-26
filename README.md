@@ -1,7 +1,7 @@
 # Optimal stopping problem of an Ornstein-Uhlenbeck bridge
 
 ## Description: 
-Computes the Optimal Stopping Boundary (OSB) that maximizes the mean of an Gauss-Markov Bridge (GMB)
+Computes the Optimal Stopping Boundary (OSB) that maximizes the mean of a Gauss-Markov Bridge (GMB)
 
 ## Details:
 A Picard's iteration algorithm is implemented to solve the free-boundary equation that characterizes the OSB of a GMB. Details can be found in the companion paper Optimal Stopping of a Gauss-Markov bridge, by D'Auria, B., García-Portugués E., and Azze A.
