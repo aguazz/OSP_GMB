@@ -5,7 +5,7 @@ library(scales)
 # Pre-settings
 fig.gen <- TRUE
 color <- c("firebrick3", "deepskyblue3", "darkolivegreen4")
-length.axis <- 4
+length.axis <- 5
 #### Figure 1: Brownian bridge (Accuracy) ####
 # Reading data
 load(file = "data/FigBB.RData")
@@ -29,9 +29,7 @@ matlines(t.line, t(0.8399 * c * matrix(rep(sqrt(t.final - t.line), each = 3), nr
 # Main plot's legend
 if (fig.gen) {
   legend(x = 0.76, y = 1.88, bty = "n", title = "",
-         legend = c(TeX(paste0("$\\tilde{\\nu} = ", "$", c[1], "$")),
-                    TeX(paste("$\\tilde{\\nu} = ", "$", c[2], "$")),
-                    TeX(paste("$\\tilde{\\nu} = ", "$", c[3], "$"))),
+         legend = TeX(sprintf("$\\tilde{\\nu} = %f$", c)),
          col = color, lty = 1, cex = 2, xpd = TRUE, lwd = 2)
 } else {
   legend(x = 0.83, y = 1.92, bty = "n", title = "",
@@ -83,10 +81,8 @@ lines(t.line[[3]], bnd.conv[[3]], lty = 1, col = color[3], lwd = 3)
 lines(t.line[[3]], 0.8399 * c * sqrt(t.final - t.line[[3]]), lty = 2, lwd = 3)
 # Main plot's legend
 if (fig.gen) {
-  legend(x = 0.75, y = 0.94, bty = "n", title = "",
-         legend = c(TeX(paste0("$N = ", N[1], "$")),
-                    TeX(paste0("$N = ", N[2], "$")),
-                    TeX(paste0("$N = ", N[3], "$"))),
+  legend(x = 0.745, y = 0.94, bty = "n", title = "",
+         legend = TeX(sprintf("$N = %f", N)),
          col = color, lty = 1, cex = 2, xpd = TRUE, lwd = 2)
 } else {
   legend(x = 0.82, y = 0.96, bty = "n", title = "",
@@ -138,11 +134,11 @@ lines(seq(0, t.final, l = 500), 0.8399 * c * sqrt(seq(t.final, 0, l = 500)), lty
 # Main plot's legend
 if (fig.gen) {
   legend(x = 0.75, y = 0.92, bty = "n", title = "",
-         legend = c("Homogeneous", "Suden shrink", "Logarithmic"),
+         legend = c("Homogeneous", "Sudden shrink", "Logarithmic"),
          col = color, lty = 1, cex = 2, xpd = TRUE, lwd = 2)
 } else {
   legend(x = 0.75, y = 0.96, bty = "n", title = "",
-         legend = c("Homogeneous", "Suden shrink", "Logarithmic"),
+         legend = c("Homogeneous", "Sudden shrink", "Logarithmic"),
          col = color, lty = 1, cex = 1.5, xpd = TRUE, lwd = 2)
 }
 # Errors' plots
@@ -188,11 +184,11 @@ lines(x.axis, error.log[-(1:6)], lty = 1, lwd = 2, col = color[3])
 # Main plot's legend
 if (fig.gen) {
   legend(x = 380, y = 0.0064, bty = "n", title = "",
-         legend = c("Homogeneous", "Suden shrink", "Logarithmic"),
+         legend = c("Homogeneous", "Sudden shrink", "Logarithmic"),
          col = color, lty = 1, cex = 2, xpd = TRUE, lwd = 2)
 } else {
   legend(x = 385, y = 0.0064, bty = "n", title = "",
-         legend = c("Homogeneous", "Suden shrink", "Logarithmic"),
+         legend = c("Homogeneous", "Sudden shrink", "Logarithmic"),
          col = color, lty = 1, cex = 1, xpd = TRUE, lwd = 2)
 }
 # Saving pdf (if fig.gen = TRUE)
@@ -221,11 +217,11 @@ lines(seq(0, t.final, l = 500), 0.8399 * c * sqrt(seq(t.final, 0, l = 500)), lty
 # Main plot's legend
 if (fig.gen) {
   legend(x = 0.64, y = 0.94, bty = "n", title = "",
-         legend = c("Homogeneous", "Suden shrink", "Logarithmic"),
+         legend = c("Homogeneous", "Sudden shrink", "Logarithmic"),
          col = color, lty = 1, cex = 2, xpd = TRUE, lwd = 2)
 } else {
   legend(x = 0.75, y = 0.96, bty = "n", title = "",
-         legend = c("Homogeneous", "Suden shrink", "Logarithmic"),
+         legend = c("Homogeneous", "Sudden shrink", "Logarithmic"),
          col = color, lty = 1, cex = 1.5, xpd = TRUE, lwd = 2)
 }
   ## Loading data 2
@@ -344,8 +340,8 @@ matplot(t.line, bnd.level, type = "l", lty = 1, ylim = range(bnd.level),
         xlab = "", ylab = "", col = color, lwd = 3)
 # Main plot's legend
 if (fig.gen) {
-  legend(x = 0.43, y = 1.63, bty = "n", title = "",
-         legend = c(TeX(paste0("$\\tilde{\\kappa}(t) = ", b, " + ", b/2, " $\\sin(8\\pi t)$")),
+  legend(x = 0.415, y = 1.63, bty = "n", title = "",
+         legend = c(TeX(paste0("$\\tilde{\\kappa}(t) = ", b, " + ", b/2, "\\sin(8\\pi t)$")),
                     TeX(paste0("$\\tilde{\\kappa}(t) = ", b/2, "(2\\Phi(50t - 25) - 1)$")),
                     TeX(paste0("$\\tilde{\\kappa}(t) = ", -b/2, "$"))),
          col = color, lty = 1, cex = 2, xpd = TRUE, lwd = 2, y.intersp = 1.3)
@@ -421,10 +417,10 @@ matplot(t.line, bnd.slope, type = "l", lty = 1, ylim = c(y.min.max[1], y.min.max
         xlab = "", ylab = "", col = color, lwd = 3)
 # Main plot's legend
 if (fig.gen) {
-  legend(x = 0.425, y = 1.14, bty = "n", title = "",
-         legend = c(TeX(paste0("$\\tilde{\\theta}(t) =\\, e^{", a, "t}$")),
-                    TeX(paste0("$\\tilde{\\theta}(t) =\\, 1 + ", 5*a, "\\sqrt{2\\pi}\\phi(20t - 10)$")),
-                    TeX(paste0("$\\tilde{\\theta}(t) =\\, e^{", -a, "t}$"))),
+  legend(x = 0.42, y = 1.14, bty = "n", title = "",
+         legend = c(TeX(paste0("$\\tilde{\\theta}(t) = e^{", a, "t}$")),
+                    TeX(paste0("$\\tilde{\\theta}(t) = 1 + ", 5*a, "\\sqrt{2\\pi}\\phi(20t - 10)$")),
+                    TeX(paste0("$\\tilde{\\theta}(t) = e^{", -a, "t}$"))),
          col = color, lty = 1, cex = 2, xpd = TRUE, lwd = 2, y.intersp = 1.3)
 } else {
   legend(x = 0.53, y = 1.1, bty = "n", title = "",
@@ -499,9 +495,9 @@ matplot(t.line, bnd.vol, type = "l", lty = 1, ylim = c(y.min.max[1], y.min.max[2
 # Main plot's legend
 if (fig.gen) {
   legend(x = 0.43, y = 6.72, bty = "n", title = "",
-         legend = c(TeX(paste0("$\\tilde{\\nu}(t) =\\, ", 3*c, " + ", 3*c , "\\Phi(100t -\\, 50)$")),
-                    TeX(paste0("$\\tilde{\\nu}(t) =\\, ", 3*c, " + ", 2*c ,"\\cos(8\\pi t)$")),
-                    TeX(paste0("$\\tilde{\\nu}(t) =\\, ", c, " + ", 5*c , "\\sqrt{2\\pi}\\phi(50t -\\, 25)$"))),
+         legend = c(TeX(paste0("$\\tilde{\\nu}(t) = ", 3*c, " + ", 3*c , "\\Phi(100t -\\, 50)$")),
+                    TeX(paste0("$\\tilde{\\nu}(t) = ", 3*c, " + ", 2*c ,"\\cos(8\\pi t)$")),
+                    TeX(paste0("$\\tilde{\\nu}(t) = ", c, " + ", 5*c , "\\sqrt{2\\pi}\\phi(50t -\\, 25)$"))),
          col = color, lty = 1, cex = 2, xpd = TRUE, lwd = 2, y.intersp = 1.3)
 } else {
   legend(x = 0.57, y = 4, bty = "n", title = "",
@@ -532,29 +528,3 @@ axis(side = 1, at = 1:length(log.err.vol[[3]]))
 lines(1:length(log.err.vol[[3]]), log.err.vol[[3]], lty = 1, col = color[3])
 # Saving pdf (if fig.gen = TRUE)
 if (fig.gen) dev.off()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
